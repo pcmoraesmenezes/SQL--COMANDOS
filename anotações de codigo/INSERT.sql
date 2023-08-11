@@ -1,11 +1,23 @@
--- Seciona a base de dados
-use base_de_dados;
+-- -- Seciona a base de dados
+-- use base_de_dados;
 
--- Mostra as tabelas da base de dados
-show tables;
+-- -- Mostra as tabelas da base de dados
+-- show tables;
 
--- Descreve as colunas da tabela
-describe users;
+-- -- Descreve as colunas da tabela
+-- describe users;
+
+-- No sqlite3 não é suportado os comandos use, show e describe por isso estão comentados!!!
+
+-- Criando tabela
+CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY,
+    first_name TEXT,
+    last_name TEXT,
+    email TEXT,
+    password_hash TEXT
+);
+
 
 -- Inserir registros na base de dados -- 
 
