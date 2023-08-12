@@ -108,3 +108,11 @@ WHERE id BETWEEN 3 AND 50
 ORDER BY first_name ASC
 LIMIT 14,2; -- (OFSET = 14, LIMIT = 2)
 
+-- CONCAT -> SERVE PARA CONCATENAR STRINGS
+
+INSERT INTO profiles 
+(bio, description, user_id)
+SELECT CONCAT('BIO OF: ', first_name),
+CONCAT('DESCRIPTION OF: ', ' ', first_name),
+id 
+FROM users;
