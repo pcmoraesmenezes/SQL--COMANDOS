@@ -1,0 +1,34 @@
+use base_de_dados;
+INSERT INTO roles (name)
+VALUES ('POST'), ('PUT'), ('DELETE'), ('GET');
+
+INSERT INTO users_roles (user_id, role_id)
+VALUES
+(4, 4);
+
+SELECT user_id, role_id FROM users_roles WHERE
+user_id = 4 AND role_id  = 4;
+
+SELECT
+id,
+(SELECT id FROM roles ORDER BY RAND() LIMIT 1) AS roles
+FROM users;
+
+INSERT INTO users_roles (user_id, role_id)
+SELECT
+id,
+(SELECT id FROM roles ORDER BY RAND() LIMIT 1) AS roles
+FROM users;
+
+-- NOTE QUE O CÓDIGO ACIMA ACARRETA EM ERRO DEVIDO A PRIMARY KEY TER DE SER ÚNICA, ENTRETANTO ESSE ERRO É OCASIONADO DE FORMA ALEATORIA TENDO EM VISTA
+-- QUE A PRIMARY KEY NÃO PODE TER O VALOR DUPLICADO, PARA DAR A VOLTA NESSE ERRO BASTA UTILIZAR O IGNORE, ELE IRÁ ADICIONAR OS VALORES E OS QUE DEREM ERRO
+-- NADA IRÁ ACONTECER
+
+INSERT IGNORE INTO users_roles(user_id, role_id)
+SELECT
+id,
+(SELECT id FROM roles ORDER BY RAND() LIMIT 1) AS roles
+FROM users;
+
+DELETE FROM roles
+WHERE id = 2 OR id = 3;
